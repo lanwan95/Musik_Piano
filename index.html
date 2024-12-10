@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>MUSIK PIANO</title>
+    <style>
+        /* Menjadikan body sebagai container flex untuk penataan secara vertikal */
+        body {
+            display: flex;
+            flex-direction: column;  /* Menyusun elemen secara vertikal */
+            justify-content: center; /* Menjaga konten tetap di tengah secara horizontal */
+            align-items: center;     /* Menjaga konten tetap di tengah secara vertikal */
+            height: 100vh;           /* Menggunakan seluruh tinggi viewport */
+            margin: 0;               /* Menghapus margin default dari browser */
+            background-color: #f4f4f4; /* Latar belakang yang lebih terang */
+        }
+
+        /* Menambahkan gaya untuk judul */
+        h3 {
+            margin-bottom: 20px;     /* Memberikan jarak antara judul dan tombol */
+            font-size: 30px;         /* Ukuran font untuk judul */
+            font-family: Arial, sans-serif; /* Gaya font */
+            color: #333;             /* Warna teks */
+        }
+
+        /* Container untuk tombol piano */
+        .piano-container {
+            display: flex;
+            justify-content: center;   /* Menyusun tombol di tengah secara horizontal */
+            align-items: center;       /* Menyusun tombol di tengah secara vertikal */
+            background-color: #fff;    /* Warna latar belakang kontainer */
+            padding: 20px;             /* Memberikan ruang di dalam kontainer */
+            border: 2px solid #333;    /* Menambahkan border di sekitar kontainer */
+            border-radius: 10px;       /* Memberikan sudut yang melengkung pada kontainer */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Memberikan efek bayangan */
+        }
+
+        /* Menambahkan gaya pada tombol piano */
+        button {
+            width: 60px;
+            height: 200px;
+            margin: 5px;
+            font-size: 20px;
+            background-color: red;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+
+        /* Gaya saat tombol ditekan */
+        button:active {
+            background-color: rgb(161, 43, 43);
+            transition: .3s all ease-in-out;
+        }
+
+    </style>
+</head>
+<body>
+    <h3>MUSIK WEB PIANO</h3> <!-- Judul di atas tombol -->
+    
+    <!-- Container untuk tombol piano -->
+    <div class="piano-container">
+        <div id="note"></div> <!-- Tombol-tombol piano akan berada di sini -->
+    </div>
+
+    <script>
+        const chords = ["a", "c", "d", "e", "f"];
+        const note = document.getElementById("note");
+
+        // Menggunakan nama variabel berbeda untuk mencegah kebingungan
+        chords.forEach(chord => {
+            const button = document.createElement("button");
+            button.innerText = chord;
+
+            // Menambahkan event listener untuk memainkan suara saat tombol diklik
+            button.addEventListener("click", () => {
+                const sound = new Audio(`/assets/${chord}.wav`);
+
+
+                sound.play();
+            });
+
+            // Menambahkan tombol ke dalam kontainer
+            note.appendChild(button);
+        });
+
+
+         // Mencegah klik kanan
+         document.addEventListener('contextmenu', function(e) {
+            e.preventDefault(); // Mencegah menu klik kanan muncul
+        });
+    </script>
+</body>
+</html>
